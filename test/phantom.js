@@ -1,10 +1,12 @@
+const system = require('system');
+
 // To make a screenshot: https://github.com/ariya/phantomjs/blob/master/examples/rasterize.js
 // phantomjs rasterize.js http://localhost:6060/ output.png
 
 /* eslint-disable no-console, no-multi-assign */
 /* globals phantom:false */
 
-if (process.argv.args.length !== 2) {
+if (system.args.length !== 2) {
 	console.log('Usage: phantom.js <URL>');
 	phantom.exit(1);
 }
@@ -38,7 +40,7 @@ page.onConsoleMessage = function(msg) {
 
 page.viewportSize = { width: 1024, height: 768 };
 
-page.open(process.argv.args[1], function(status) {
+page.open(system.args[1], function(status) {
 	if (status !== 'success') {
 		console.log('PhantomJS: Cannot load the page');
 		phantom.exit(1);
